@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cluster-management
+  namespace: openshift-gitops
+spec:
+  project: default
+  source:
+    repoURL: 'git@github.com:mallmen/openshift-config.git'
+    targetRevision: HEAD
+    path: bootstrap/overlays/default
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: openshift-gitops
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

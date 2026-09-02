@@ -8,8 +8,12 @@ Wait for the operator and ArgoCD instance to finish deploying, then grant cluste
 
 Get the default admin password:
 
-`argocd oc get secret openshift-gitops-cluster -n openshift-gitops -o jsonpath='{.data.admin\.password}' | base64 -d^`
+`oc get secret openshift-gitops-cluster -n openshift-gitops -o jsonpath='{.data.admin\.password}' | base64 -d^`
 
 Get the ArgoCD route:
 
-`argocd oc get route openshift-gitops-server -n openshift-gitops`
+`oc get route openshift-gitops-server -n openshift-gitops`
+
+Create the App of Apps configuration:
+
+`oc apply -f app-of-apps.yaml`
