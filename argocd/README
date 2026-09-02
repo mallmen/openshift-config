@@ -1,0 +1,7 @@
+Get the default admin password:
+
+`argocd oc get secret openshift-gitops-cluster -n openshift-gitops -o jsonpath='{.data.admin\.password}' | base64 -d^`
+
+Get the ArgoCD route:
+
+`argocd oc get route openshift-gitops-server -n openshift-gitops`
