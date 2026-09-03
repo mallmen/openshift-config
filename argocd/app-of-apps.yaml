@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: 'git@github.com:mallmen/openshift-config.git'
     targetRevision: HEAD
-    path: bootstrap/overlays/default
+    path: .
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: openshift-gitops
