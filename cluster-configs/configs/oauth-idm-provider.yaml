@@ -22,7 +22,7 @@ spec:
             - uid
           groups:
             - memberOf
-        bindDN: "uid=ocpsvc,cn=users,cn=accounts,dc=idm,dc=ipa,dc=mikea,dc=net"
+        bindDN: "uid=ocpsvc,cn=users,cn=accounts,dc=ipa,dc=mikea,dc=net"
         bindPassword:
           name: idm-bind-password
         insecure: false
