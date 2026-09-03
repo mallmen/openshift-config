@@ -1,3 +1,2 @@
 directory:
   recurse: true
-  exclude: "argocd"
