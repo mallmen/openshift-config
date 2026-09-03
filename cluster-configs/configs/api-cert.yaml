@@ -1,18 +1,19 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: custom-ingress-cert
-  namespace: openshift-ingress
+  name: custom-api-cert
+  namespace: openshift-config
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
-  commonName: "*.apps.ocp4.mikea.net"
+  commonName: api.ocp4.mikea.net
   dnsNames:
-  - "*.apps.ocp4.mikea.net"
-  - "apps.ocp4.mikea.net"
+  - "api.ocp4.mikea.net"
   issuerRef:
     name: custom-ca-issuer
     kind: ClusterIssuer
     group: cert-manager.io
-  secretName: custom-ingress-cert-secret
+  secretName: custom-api-cert-secret
   privateKey:
     algorithm: RSA
     encoding: PKCS1
