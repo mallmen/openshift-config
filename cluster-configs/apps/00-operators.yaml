@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cluster-operators
+  namespace: openshift-gitops
+  annotations:
+    argocd.argoproj.io/sync-wave: "0" # Deploys first
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:mallmen/openshift-config.git
+    targetRevision: HEAD
+    path: cluster-configs/operators
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: openshift-gitops
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
