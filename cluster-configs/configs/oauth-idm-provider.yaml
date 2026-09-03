@@ -1,0 +1,31 @@
+apiVersion: config.openshift.io/v1
+kind: OAuth
+metadata:
+  name: cluster
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  identityProviders:
+    - name: RHEL-IdM
+      mappingMethod: claim
+      type: LDAP
+      ldap:
+        attributes:
+          id:
+            - dn
+          email:
+            - mail
+          name:
+            - cn
+            - displayName
+          preferredUsername:
+            - uid
+          groups:
+            - memberOf
+        bindDN: "uid=ocpsvc,cn=users,cn=accounts,dc=idm,dc=ipa,dc=mikea,dc=net"
+        bindPassword:
+          name: idm-bind-password
+        insecure: false
+        ca:
+          name: user-ca-bundle
+        url: "ldaps://idm.ipa.mikea.net:636/cn=users,cn=accounts,dc=ipa,dc=mikea,dc=net?uid?sub?(&(objectClass=person)(memberOf=cn=ocpusers,cn=groups,cn=accounts,dc=ipa,dc=mikea,dc=net))"
