@@ -4,7 +4,7 @@ metadata:
   name: cluster-resource-configs
   namespace: openshift-gitops
   annotations:
-    argocd.argoproj.io/sync-wave: "1" # Deploys AFTER operators app syncs
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   project: default
   source:
@@ -19,4 +19,4 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
-      - SkipDryRunOnMissingResource=true # Prevents CRD check failure
+      - SkipDryRunOnMissingResource=true
